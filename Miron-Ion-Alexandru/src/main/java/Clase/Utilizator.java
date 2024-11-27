@@ -7,18 +7,23 @@ import java.util.Set;
 
 public class Utilizator {
 	private String nume;
-	private String prenume;
 	private Integer nrTel;
 	private String email;
 	private Integer varsta;
+	private String parola;
 	private Map<Produs, Integer> istCom = new HashMap<>();
 	private Set<Produs> pref = new HashSet<>();
 	private Map<Produs, Integer> cos = new HashMap<>();
 	
-	public Utilizator(String nume, String prenume, Integer nrTel, String email, Integer varsta) {
+	public Utilizator(String nume, String email, String parola) {
+		this.nume=nume;
+		this.parola=parola;
+		this.email=email;
+	}
+	
+	public Utilizator(String nume, Integer nrTel, String email, Integer varsta) {
 		super();
 		this.nume = nume;
-		this.prenume = prenume;
 		this.nrTel = nrTel;
 		this.email = email;
 		this.varsta = varsta;
@@ -34,15 +39,6 @@ public class Utilizator {
 		this.nume = nume;
 	}
 	
-
-	public String getPrenume() {
-		return prenume;
-	}
-	
-
-	public void setPrenume(String prenume) {
-		this.prenume = prenume;
-	}
 	
 
 	public Integer getNrTel() {
@@ -165,8 +161,16 @@ public class Utilizator {
 
 	@Override
 	public String toString() {
-		return "Utilizator [nume=" + nume + ", prenume=" + prenume + ", nrTel=" + nrTel + ", email=" + email
+		return "Utilizator [nume=" + nume + ", nrTel=" + nrTel + ", email=" + email
 				+ ", varsta=" + varsta + "]";
+	}
+
+	public String getParola() {
+		return parola;
+	}
+
+	public void setParola(String parola) {
+		this.parola = parola;
 	}
 	
 	
