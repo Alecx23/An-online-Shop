@@ -1,19 +1,17 @@
 package Clase;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+
 
 public class Utilizator {
+	
 	private String nume;
 	private Integer nrTel;
 	private String email;
 	private Integer varsta;
 	private String parola;
-	private Map<Produs, Integer> istCom = new HashMap<>();
-	private Set<Produs> pref = new HashSet<>();
-	private Map<Produs, Integer> cos = new HashMap<>();
+	private Cos cos = new Cos();
+	private Preferate pref = new Preferate();
+	private istComenzi istCom = new istComenzi();
 	
 	public Utilizator(String nume, String email, String parola) {
 		this.nume=nume;
@@ -69,95 +67,6 @@ public class Utilizator {
 	public void setVarsta(Integer varsta) {
 		this.varsta = varsta;
 	}
-	
-	
-	
-	public void punInCos(Produs p) {
-		if(cos.containsKey(p)) {
-			cos.replace(p, cos.get(p)+1);
-		}else
-			cos.put(p, 1);
-	}
-	
-	public void Prefer(Produs p) {
-		pref.add(p);
-	}
-	
-	public void ArataIstCom() {
-		if(istCom.isEmpty()) {
-			System.out.println("Nu ai niciun istoric ");
-		}
-		else {
-			System.out.println("Istoricul Comenzilor: ");
-			for(Produs p : istCom.keySet()) {
-				System.out.println(p.getNume()+" x " + istCom.get(p) + " = "+ (p.getPret()*istCom.get(p)));
-			}
-		}
-	}
-	
-	public void getPreferate() {
-		if(pref.isEmpty()){
-			System.out.println("Nu ai nimic la preferate");
-		}else {
-			System.out.println("Preferatele tale: ");
-			for(Produs p : pref)
-				System.out.println(p.getNume());
-		}
-	}
-	
-	public void ArataCos() {
-		if(cos.isEmpty()) {
-			System.out.println("Nu ai nimic in cos");
-		}else {
-			System.out.println("Cosul tau: ");
-			for(Produs p : cos.keySet()) {
-				System.out.println(p.getNume()+" x " + cos.get(p) + " = "+ (p.getPret()*cos.get(p)));
-			}
-		}
-			
-	}
-	public void stergereCos(Produs p) {
-			if(cos.containsKey(p)) {
-				if(cos.get(p)>1)
-					cos.replace(p, cos.get(p)-1);
-				else
-					cos.remove(p);
-			}
-	}
-	public void stergerePref(Produs p) {
-		boolean q = false;
-		try {
-			if(pref.contains(p)) {
-				pref.remove(p);
-				q=true;
-			}
-			if(q==false)
-				System.out.println("Acest produs nu este la favorizate");
-		}catch(IndexOutOfBoundsException e) {
-			System.out.println("Nu ati pus nimic in preferate");
-		}
-	}
-
-
-	public Map<Produs, Integer> getCos() {
-		return cos;
-	}
-
-
-	public void setCos(Map<Produs, Integer> cos) {
-		this.cos = cos;
-	}
-
-
-	public Map<Produs, Integer> getIstCom() {
-		return istCom;
-	}
-
-
-	public void setIstCom(Map<Produs, Integer> istCom) {
-		this.istCom = istCom;
-	}
-
 
 	@Override
 	public String toString() {
@@ -172,7 +81,30 @@ public class Utilizator {
 	public void setParola(String parola) {
 		this.parola = parola;
 	}
+
+	public Cos getCos() {
+		return cos;
+	}
+
+	public void setCos(Cos cos) {
+		this.cos = cos;
+	}
+
+	public Preferate getPref() {
+		return pref;
+	}
+
+	public void setPref(Preferate pref) {
+		this.pref = pref;
+	}
+
+	public istComenzi getIstCom() {
+		return istCom;
+	}
+
+	public void setIstCom(istComenzi istCom) {
+		this.istCom = istCom;
+	}
 	
 	
-	//de regandit sa il fac ca la exercitiul 3! (din cauza variabilei stoc)
 }
