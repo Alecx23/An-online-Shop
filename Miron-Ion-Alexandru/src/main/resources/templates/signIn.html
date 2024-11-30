@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8">
+		<title>SignIn_Page</title>
+	</head>
+	
+	<body>
+		<h1>Sign in form:</h1>
+		
+		<form th:action="@{/signIn}" th:object="${utilizator}" method="post">
+		<p th:if="${invalidUsername}" class="error" style="color: red;">This username is already used</p> 
+		<p th:if="${invalidPassword}" class="error" style="color: red">This password isn't strong enough</p>
+			<label for="nume"> Username </label>
+			<input type="text" id="nume" th:field="*{nume}" placeholder="Enter username" autofocus="autofocus"/>
+			
+			<label for="parola">Password</label>
+			<input type="password" id="parola" th:field="*{parola}" placeholder="Enter password"/>
+			
+			<br/>
+			<input type="submit" value="Sign in"/>
+		</form>
+		
+		<a href="/login">Log In here</a>
+	</body>
+	
+</html>

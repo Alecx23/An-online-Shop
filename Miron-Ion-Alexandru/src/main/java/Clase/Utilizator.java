@@ -13,18 +13,9 @@ public class Utilizator {
 	private Preferate pref = new Preferate();
 	private istComenzi istCom = new istComenzi();
 	
-	public Utilizator(String nume, String email, String parola) {
+	public Utilizator(String nume, String parola) {
 		this.nume=nume;
 		this.parola=parola;
-		this.email=email;
-	}
-	
-	public Utilizator(String nume, Integer nrTel, String email, Integer varsta) {
-		super();
-		this.nume = nume;
-		this.nrTel = nrTel;
-		this.email = email;
-		this.varsta = varsta;
 	}
 	
 
@@ -71,7 +62,7 @@ public class Utilizator {
 	@Override
 	public String toString() {
 		return "Utilizator [nume=" + nume + ", nrTel=" + nrTel + ", email=" + email
-				+ ", varsta=" + varsta + "]";
+				+ ", varsta=" + varsta + ", parola="+parola+ "]";
 	}
 
 	public String getParola() {
