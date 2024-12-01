@@ -1,5 +1,6 @@
 package Clase;
 
+
 public class Produs {
 
 	private String nume;
@@ -7,13 +8,19 @@ public class Produs {
 	private Integer stoc;
 	private String desc = "Este un Produs";
 	private String id;
+	private String img;
 	
-	public Produs(String nume, Integer pret, Integer stoc,String id) {
+	public Produs() {
+		
+	}
+	
+	public Produs(String nume, Integer pret, Integer stoc,String id,String img) {
 		super();
 		this.nume = nume;
 		this.pret = pret;
 		this.stoc = stoc;
 		this.id = id;
+		this.img=img;
 	}
 	
 
@@ -70,6 +77,16 @@ public class Produs {
 	@Override
 	public String toString() {
 		return "Produs [nume=" + nume + ", pret=" + pret + ", stoc=" + stoc + ", desc=" + desc + ", id=" + id + "]";
+	}
+
+
+	public String getImg() {
+		return img;
+	}
+
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 	

@@ -44,3 +44,18 @@ nav .navBar li a{
 table{
 	margin-top:100px;
 }
+
+.products{
+	text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    background-size: cover;
+}
+
+
+.product h2, p{
+	color:black;
+}
+
+

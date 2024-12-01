@@ -18,7 +18,7 @@
 			<nav>
 				<ul th:class="navBar">
 					<li>
-						<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<a href="/addProduct"><i class="fa-solid fa-magnifying-glass"></i></a>
 					</li>
 					
 					<li>
@@ -52,6 +52,22 @@
   					</tr>
   				</tbody>
 			</table>
+		</section>
+		
+		<section class="products">
+			<div class="product" th:each="produs: ${Produse}">
+				<a th:href="@{/product/{id}(id=${produs.id})}">
+					<div>
+						<img th:src="@{${produs.img}}" alt="an image of the product" width="100px">
+					</div>
+				</a>
+				<div class="product-text">
+					<h2 th:text="${produs.nume}"></h2>
+					<p th:text="${produs.desc}"></p>
+				</div>
+				
+			</div>
+			
 		</section>
 	</body>
 </html>

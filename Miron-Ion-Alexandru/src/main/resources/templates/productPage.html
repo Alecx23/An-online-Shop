@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title th:text="${produs.nume}">Product Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="/" class="btn btn-primary">Back to Home</a>
+    </header>
+    <section>
+        <h1 th:text="${produs.nume}"></h1>
+        <img th:src="${produs.img}" alt="Product image" width="200px">
+        <p><strong>Price:</strong> <span th:text="${produs.pret} + ' RON'"></span></p>
+        <p><strong>Stock:</strong> <span th:text="${produs.stoc}"></span></p>
+        <p th:text="${produs.desc}"></p>
+    </section>
+</body>
+</html>

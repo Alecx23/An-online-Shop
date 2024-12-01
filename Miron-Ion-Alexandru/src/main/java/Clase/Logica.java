@@ -1,5 +1,10 @@
 package Clase;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Logica {
 
 public static boolean verifyPass(String pass) {
@@ -36,4 +41,14 @@ public static boolean verifyPass(String pass) {
 		if(q==1) return true;
 		else return false;
     }
+
+private static List<Produs> produse = new ArrayList<Produs>(Arrays.asList( 
+		new Produs("Apa carpatica",100,3,"5033","/apa.jpg"),
+		new Produs("ciocolata",50,2,"1001","/apa.jpg"),
+		new Produs("hamburger",100,2,"1002","/apa.jpg")
+));
+	
+public static List<Produs> getProduse(){
+	return produse;
+}
 }
