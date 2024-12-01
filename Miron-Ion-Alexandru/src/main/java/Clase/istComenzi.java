@@ -1,4 +1,4 @@
-package Clase;
+/*package Clase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,4 +31,4 @@ public class istComenzi {
 	
 	
 	
-}
+}*/

@@ -1,4 +1,4 @@
-package Clase;
+/*package Clase;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -61,4 +61,4 @@ public class Comanda {
 	}
 	
 	
-}
+}*/

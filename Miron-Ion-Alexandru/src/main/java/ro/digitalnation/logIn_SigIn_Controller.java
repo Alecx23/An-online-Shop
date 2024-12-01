@@ -1,7 +1,10 @@
 package ro.digitalnation;
 
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import java.util.HashMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,12 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import Clase.Logica;
 import Clase.Utilizator;
+import Services.UtilizatorService;
+
 
 @Controller
 public class logIn_SigIn_Controller {
-
-	private HashMap<String, Utilizator> listaPersoane = new HashMap<>();
+	
 	protected static Utilizator account;
+	
+	@Autowired
+	UtilizatorService utilizatorService;
 	
 	@GetMapping("/login")
 	public String LogInForm(Model model) {
@@ -27,21 +34,22 @@ public class logIn_SigIn_Controller {
 		String username = utilizator.getNume();
 		String password = utilizator.getParola();
 		
+		
 		if("admin".equals(username) && "admin".equals(password)) {
 			account = new Utilizator("admin","admin");
-			return "index";
+			return "redirect:/";
 		}
+		
+		if(utilizatorService.getUtilizatorRepository().findByNume(username)!=null) {
+			if(utilizatorService.getUtilizatorRepository().findByNume(username).getParola().equals(password)) {
+				account= new Utilizator(username,password);
+				return "redirect:/";
+			}
 			
-		
-		else if(listaPersoane.containsKey(username)&&listaPersoane.get(username).getParola().equals(password)) {
-			account=new Utilizator(username, password);
-			return "index";
 		}
 		
-		else {
-			model.addAttribute("invalidCredentials", true);
-			return "Login_Page";
-		}
+		model.addAttribute("invalidCredentials", true);
+		return "Login_Page";
 			
 	}
 	
@@ -53,7 +61,7 @@ public class logIn_SigIn_Controller {
 	
 	@PostMapping("/signIn")
 	public String signIn(@ModelAttribute Utilizator utilizator, Model model) {
-		if(listaPersoane.containsKey(utilizator.getNume())) {
+		if(utilizatorService.getUtilizatorRepository().findByNume(utilizator.getNume())!=null) {
 			model.addAttribute("invalidUsername", true);
 			return "signIn";
 		}
@@ -61,8 +69,8 @@ public class logIn_SigIn_Controller {
 			model.addAttribute("invalidPassword", true);
 			return "signIn";
 		}
+		utilizatorService.addUtilizator(utilizator);
 		System.out.println(utilizator);
-		listaPersoane.put(utilizator.getNume(), utilizator);
 		return "redirect:login";
 	}
 }

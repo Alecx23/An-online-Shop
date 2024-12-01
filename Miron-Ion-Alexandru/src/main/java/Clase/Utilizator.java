@@ -1,17 +1,30 @@
 package Clase;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Utilizator {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	
 	private String nume;
 	private Integer nrTel;
 	private String email;
 	private Integer varsta;
 	private String parola;
-	private Cos cos = new Cos();
-	private Preferate pref = new Preferate();
-	private istComenzi istCom = new istComenzi();
+//	private Cos cos = new Cos();
+//	private Preferate pref = new Preferate();
+//	private istComenzi istCom = new istComenzi();
+	
+	public Utilizator() {
+		
+	}
 	
 	public Utilizator(String nume, String parola) {
 		this.nume=nume;
@@ -73,29 +86,29 @@ public class Utilizator {
 		this.parola = parola;
 	}
 
-	public Cos getCos() {
-		return cos;
-	}
+//	public Cos getCos() {
+//		return cos;
+//	}
 
-	public void setCos(Cos cos) {
-		this.cos = cos;
-	}
+//	public void setCos(Cos cos) {
+//		this.cos = cos;
+//	}
 
-	public Preferate getPref() {
-		return pref;
-	}
+//	public Preferate getPref() {
+//		return pref;
+//	}
 
-	public void setPref(Preferate pref) {
-		this.pref = pref;
-	}
+//	public void setPref(Preferate pref) {
+//		this.pref = pref;
+//	}
 
-	public istComenzi getIstCom() {
-		return istCom;
-	}
+//	public istComenzi getIstCom() {
+//		return istCom;
+//	}
 
-	public void setIstCom(istComenzi istCom) {
-		this.istCom = istCom;
-	}
+//	public void setIstCom(istComenzi istCom) {
+//		this.istCom = istCom;
+//	}
 	
 	
 }
