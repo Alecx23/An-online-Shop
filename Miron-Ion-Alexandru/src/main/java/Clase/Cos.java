@@ -1,4 +1,4 @@
-package Clase;
+/*package Clase;
 
 import java.util.HashMap;
 
@@ -51,4 +51,4 @@ public class Cos {
 	}
 
 	
-}
+}*/

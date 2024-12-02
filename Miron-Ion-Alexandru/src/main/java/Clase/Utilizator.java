@@ -1,10 +1,15 @@
 package Clase;
 
 
+
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Utilizator {
@@ -18,8 +23,11 @@ public class Utilizator {
 	private String email;
 	private Integer varsta;
 	private String parola;
+	
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "preferate_id", referencedColumnName = "id")
+    private Preferate pref = new Preferate();
 //	private Cos cos = new Cos();
-//	private Preferate pref = new Preferate();
 //	private istComenzi istCom = new istComenzi();
 	
 	public Utilizator() {
@@ -86,6 +94,24 @@ public class Utilizator {
 		this.parola = parola;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Preferate getPref() {
+		return pref;
+	}
+
+	public void setPref(Preferate pref) {
+		this.pref = pref;
+	}
+
+	
+
 //	public Cos getCos() {
 //		return cos;
 //	}
@@ -94,13 +120,7 @@ public class Utilizator {
 //		this.cos = cos;
 //	}
 
-//	public Preferate getPref() {
-//		return pref;
-//	}
-
-//	public void setPref(Preferate pref) {
-//		this.pref = pref;
-//	}
+	
 
 //	public istComenzi getIstCom() {
 //		return istCom;

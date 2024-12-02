@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title th:text="${produs.nume}">Product Details</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/fdc29e935d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -16,6 +17,20 @@
         <p><strong>Price:</strong> <span th:text="${produs.pret} + ' RON'"></span></p>
         <p><strong>Stock:</strong> <span th:text="${produs.stoc}"></span></p>
         <p th:text="${produs.desc}"></p>
+        
+        <form th:if="${isPreferred}" th:action="@{/preferate/remove}" method="post" >
+			<input type="hidden" th:value="${produs.id}" name="productId"/>
+			<button type="submit" >
+				<i class="fa-solid fa-heart"></i>		
+			</button>        
+        </form>
+        
+        <form th:if="!${isPreferred}" th:action="@{/preferate/add}" method="post">
+        	<input type="hidden" th:value="{produs.id}" name="productId"/>
+        	<button type="submit">
+        		<i class="fa-regular fa-heart"></i>
+        	</button>
+        </form>
     </section>
 </body>
 </html>

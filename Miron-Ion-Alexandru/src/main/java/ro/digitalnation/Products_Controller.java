@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,27 +19,47 @@ import org.springframework.web.multipart.MultipartFile;
 
 import Clase.Logica;
 import Clase.Produs;
+import Clase.Utilizator;
+import Services.ProductServices;
+import Services.UtilizatorService;
 
 @Controller
 public class Products_Controller {
 
+	@Autowired
+	ProductServices productServices;
+	
+	@Autowired
+	UtilizatorService utilizatorService;
+	
 	private static final String UPLOAD_DIRECTORY = System.getProperty("user.dir")+"//src//main//resources//static//uploads";
 	
 	@GetMapping("/product/{id}")
-	public String productDetails(@PathVariable String id, Model model) {
-		Produs prod=null;
-		for(Produs p : Logica.getProduse()) {
-			if(p.getId().equals(id)) {
-				prod=p;
-				break;
-			}
-				
-		}
-		if(prod!=null) {
-			model.addAttribute("produs", prod);
-			return "productPage";
-		}else
+	public String productDetails(@PathVariable Long id, Model model) {
+		if(id==null) {
+			System.out.println("id-ul este null");
 			return "redirect:/";
+		}
+		Produs product = productServices.getProductRepository().findById(id).orElse(null);
+		System.out.println(product.toString());
+		
+		//if(product==null) {
+			//return "redirect:/";
+		//}
+		/*System.out.println(logIn_SigIn_Controller.account.toString());
+		Utilizator currentUser = utilizatorService.getUtilizatorRepository()
+	            .findById(logIn_SigIn_Controller.account.getId())
+	            .orElse(null);
+		System.out.println(currentUser);
+		
+		boolean isPreferred = false;
+	    if (currentUser != null) {
+	        isPreferred = currentUser.getPref().getPref().contains(product);
+	    }
+	    */
+	    model.addAttribute("produs", product);
+	    model.addAttribute("isPreferred", true);
+	    return "productPage";
 	}
 	
 	@GetMapping("/addProduct")
@@ -65,7 +86,7 @@ public class Products_Controller {
 		    produs.setImg(fileNameAndPath.toString()); 
 		    
 		    
-		    Logica.getProduse().add(produs);
+		    productServices.addProduct(produs);
 
 		    
 		    model.addAttribute("produs", produs);

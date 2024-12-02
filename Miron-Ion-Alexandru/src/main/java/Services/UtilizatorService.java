@@ -29,6 +29,12 @@ public class UtilizatorService {
 		return utilizatorRepository;
 	}
 
+	public Utilizator LogIn(String nume, String parola) {
+		return utilizatorRepository.findByNumeAndParola(nume, parola);
+	}
 	
+	public Utilizator verificareNume(String nume) {
+		return utilizatorRepository.findByNume(nume);
+	}
 	
 }

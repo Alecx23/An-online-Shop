@@ -18,7 +18,11 @@
 			<nav>
 				<ul th:class="navBar">
 					<li>
-						<a href="/addProduct"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<a th:if="${user.nume=='admin'}" href="/addProduct"><i class="fa-solid fa-star"></i></a>
+					</li>
+					
+					<li>
+						<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
 					</li>
 					
 					<li>
@@ -26,7 +30,12 @@
 					</li>
 					
 					<li>
-						<a href="/signIn"><i class="fa-solid fa-user"></i></a>
+						<a href="#"><i class="fa-solid fa-heart"></i></a>
+					</li>
+					
+					<li>
+						<a th:if="${user.nume == 'user'}"href="/signIn"><i class="fa-solid fa-user"></i></a>
+						<a th:if="${user.nume != 'user'}" href="/logOut"><i class="fa-solid fa-sign-out-alt"></i></a>
 					</li>
 					
 				</ul>

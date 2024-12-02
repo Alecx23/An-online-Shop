@@ -18,7 +18,7 @@ import Services.UtilizatorService;
 @Controller
 public class logIn_SigIn_Controller {
 	
-	protected static Utilizator account;
+	protected static Utilizator account=new Utilizator("user","user");
 	
 	@Autowired
 	UtilizatorService utilizatorService;
@@ -40,12 +40,11 @@ public class logIn_SigIn_Controller {
 			return "redirect:/";
 		}
 		
-		if(utilizatorService.getUtilizatorRepository().findByNume(username)!=null) {
-			if(utilizatorService.getUtilizatorRepository().findByNume(username).getParola().equals(password)) {
+		if(utilizatorService.LogIn(username, password)!=null) {
 				account= new Utilizator(username,password);
+				System.out.println(utilizatorService.getUtilizatorRepository().findByNume(username).getId());
+				account.setId(utilizatorService.getUtilizatorRepository().findByNume(username).getId());
 				return "redirect:/";
-			}
-			
 		}
 		
 		model.addAttribute("invalidCredentials", true);
@@ -61,7 +60,7 @@ public class logIn_SigIn_Controller {
 	
 	@PostMapping("/signIn")
 	public String signIn(@ModelAttribute Utilizator utilizator, Model model) {
-		if(utilizatorService.getUtilizatorRepository().findByNume(utilizator.getNume())!=null) {
+		if(utilizatorService.verificareNume(utilizator.getNume())!=null&&utilizator.getNume().equals("admin")) {
 			model.addAttribute("invalidUsername", true);
 			return "signIn";
 		}
