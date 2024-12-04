@@ -43,10 +43,10 @@ public class Products_Controller {
 		Produs product = productServices.getProductRepository().findById(id).orElse(null);
 		System.out.println(product.toString());
 		
-		//if(product==null) {
-			//return "redirect:/";
-		//}
-		/*System.out.println(logIn_SigIn_Controller.account.toString());
+		if(product==null) {
+			return "redirect:/";
+		}
+		System.out.println(logIn_SigIn_Controller.account.toString());
 		Utilizator currentUser = utilizatorService.getUtilizatorRepository()
 	            .findById(logIn_SigIn_Controller.account.getId())
 	            .orElse(null);
@@ -56,9 +56,9 @@ public class Products_Controller {
 	    if (currentUser != null) {
 	        isPreferred = currentUser.getPref().getPref().contains(product);
 	    }
-	    */
+	    
 	    model.addAttribute("produs", product);
-	    model.addAttribute("isPreferred", true);
+	    model.addAttribute("isPreferred", isPreferred);
 	    return "productPage";
 	}
 	
@@ -83,7 +83,7 @@ public class Products_Controller {
 		    file.transferTo(fileNameAndPath.toFile()); 
 
 		   
-		    produs.setImg(fileNameAndPath.toString()); 
+		    produs.setImg("uploads/"+fileName); 
 		    
 		    
 		    productServices.addProduct(produs);

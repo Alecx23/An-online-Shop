@@ -67,7 +67,8 @@
 			<div class="product" th:each="produs: ${Produse}">
 				<a th:href="@{/product/{id}(id=${produs.id})}">
 					<div>
-						<img th:src="@{${produs.img}}" alt="an image of the product" width="100px">
+						 <img th:src="@{${produs.img}}" alt="an image of the product" width="100px">
+					<!--  	<img src="uploads/Cofetarie_ERD.png">-->
 					</div>
 				</a>
 				<div class="product-text">
