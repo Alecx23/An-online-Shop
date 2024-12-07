@@ -1,6 +1,7 @@
 package ro.digitalnation;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,7 +33,8 @@ public class Products_Controller {
 	@Autowired
 	UtilizatorService utilizatorService;
 	
-	private static final String UPLOAD_DIRECTORY = System.getProperty("user.dir")+"//src//main//resources//static//uploads";
+	private static final String UPLOAD_DIRECTORY = System.getProperty("user.dir")+File.separator + "src" + File.separator
+			+"main" +File.separator+"resources"+File.separator+"static"+File.separator+"uploads";
 	
 	@GetMapping("/product/{id}")
 	public String productDetails(@PathVariable Long id, Model model) {
@@ -43,20 +45,20 @@ public class Products_Controller {
 		Produs product = productServices.getProductRepository().findById(id).orElse(null);
 		System.out.println(product.toString());
 		
-		if(product==null) {
-			return "redirect:/";
-		}
 		System.out.println(logIn_SigIn_Controller.account.toString());
+		System.out.println(logIn_SigIn_Controller.account.getPref());
+		
 		Utilizator currentUser = utilizatorService.getUtilizatorRepository()
 	            .findById(logIn_SigIn_Controller.account.getId())
 	            .orElse(null);
+		
 		System.out.println(currentUser);
 		
 		boolean isPreferred = false;
 	    if (currentUser != null) {
-	        isPreferred = currentUser.getPref().getPref().contains(product);
+	        isPreferred = currentUser.getPref().getProduse().contains(product);
 	    }
-	    
+	    System.out.println(isPreferred);
 	    model.addAttribute("produs", product);
 	    model.addAttribute("isPreferred", isPreferred);
 	    return "productPage";
@@ -83,7 +85,7 @@ public class Products_Controller {
 		    file.transferTo(fileNameAndPath.toFile()); 
 
 		   
-		    produs.setImg("uploads/"+fileName); 
+		    produs.setImg("/uploads/"+fileName); 
 		    
 		    
 		    productServices.addProduct(produs);

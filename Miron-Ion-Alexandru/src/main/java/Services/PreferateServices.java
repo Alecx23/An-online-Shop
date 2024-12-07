@@ -26,6 +26,10 @@ public class PreferateServices {
 	public void addPreferate(Preferate pref) {
 		preferateRepository.save(pref);
 	}
+	
+	public void removePreferate(Preferate pref) {
+		preferateRepository.delete(pref);
+	}
 
 	public PreferateRepository getPreferateRepository() {
 		return preferateRepository;

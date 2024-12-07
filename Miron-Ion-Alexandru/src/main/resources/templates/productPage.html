@@ -17,6 +17,7 @@
         <p><strong>Price:</strong> <span th:text="${produs.pret} + ' RON'"></span></p>
         <p><strong>Stock:</strong> <span th:text="${produs.stoc}"></span></p>
         <p th:text="${produs.desc}"></p>
+        
         <div th:if="${isPreferred}" >
 	        <form  th:action="@{/preferate/remove}" method="post" >
 				<input type="hidden" th:value="${produs.id}" name="productId"/>
@@ -28,7 +29,7 @@
         </div>
         <div th:unless="${isPreferred}">
          <form th:action="@{/preferate/add}" method="post">
-        	<input type="hidden" th:value="{produs.id}" name="productId"/>
+        	<input type="hidden" th:value="${produs.id}" name="productId"/>
         	<button type="submit">
         		<i class="fa-regular fa-heart"></i>
         	</button>

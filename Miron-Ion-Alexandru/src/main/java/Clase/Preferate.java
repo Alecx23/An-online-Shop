@@ -3,6 +3,7 @@ package Clase;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Preferate {
@@ -19,12 +21,12 @@ public class Preferate {
 	private Long Id;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "utilizator_id")
+	@OneToOne
+	@JoinColumn(name = "utilizator_id", referencedColumnName = "utilizator_id")
 	private Utilizator utilizator;
 	
-	@OneToMany
-	private Set<Produs> pref = new HashSet<>();
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<Produs> produse = new HashSet<>();
 	
 	public Long getId() {
 		return Id;
@@ -46,13 +48,13 @@ public class Preferate {
 	}
 
 
-	public Set<Produs> getPref() {
-		return pref;
+	public Set<Produs> getProduse() {
+		return produse;
 	}
 
 
-	public void setPref(Set<Produs> pref) {
-		this.pref = pref;
+	public void setProduse(Set<Produs> pref) {
+		this.produse = pref;
 	}
 
 

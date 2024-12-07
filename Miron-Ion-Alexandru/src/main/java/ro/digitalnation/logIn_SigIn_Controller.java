@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import Clase.Logica;
+import Clase.Preferate;
 import Clase.Utilizator;
 import Services.UtilizatorService;
 
@@ -60,14 +61,20 @@ public class logIn_SigIn_Controller {
 	
 	@PostMapping("/signIn")
 	public String signIn(@ModelAttribute Utilizator utilizator, Model model) {
+		Preferate preferate = new Preferate();
+		preferate.setUtilizator(utilizator);
+		utilizator.setPref(preferate);
+		
 		if(utilizatorService.verificareNume(utilizator.getNume())!=null&&utilizator.getNume().equals("admin")) {
 			model.addAttribute("invalidUsername", true);
 			return "signIn";
 		}
+		
 		if(Logica.verifyPass(utilizator.getParola())==false) {
 			model.addAttribute("invalidPassword", true);
 			return "signIn";
 		}
+		
 		utilizatorService.addUtilizator(utilizator);
 		System.out.println(utilizator);
 		return "redirect:login";
