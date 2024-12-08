@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset ="utf-8">
+		<title>Cos</title>
+		
+	</head>
+	
+	<body>
+		<section class="Cos">
+			<div class="product-container" th:each="produs: ${ProduseCos}">
+				
+				<div class="product-card">
+					<a th:href="@{/product/{id}(id=${produs.key.id})}">
+						<img th:src="@{${produs.key.img}}" alt="an image of the product" class="product-img">
+						
+						<div class="product-text">
+							<h2 th:text="${produs.key.nume}"></h2>
+							<p>Cantitate:</p>
+							<p th:text="${produs.value}"/>
+						</div>
+					</a>
+				</div>
+				<div class="remove-button">
+					<form th:action="@{/removeCos}" method="post">
+						<input type="hidden" th:value="${produs.key.id}" name="productId"/>
+						<button type="submit">Remove</button>
+					</form> 
+				</div>
+			</div>
+			<div class="buy-button">
+				<form>
+					<input type="hidden"/>
+					<button type="submit">Buy</button>
+				</form>
+			</div>
+		</section>
+	</body>
+</html>

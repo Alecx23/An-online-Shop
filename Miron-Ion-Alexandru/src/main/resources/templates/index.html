@@ -12,34 +12,34 @@
 	<body>
 	
 		<header>
-			<figure>
-				<img src="logo.webp" alt="Logo">
-			</figure>
-			<nav>
-				<ul th:class="navBar">
-					<li>
-						<a th:if="${user.nume=='admin'}" href="/addProduct"><i class="fa-solid fa-star"></i></a>
-					</li>
-					
-					<li>
-						<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-					</li>
-					
-					<li>
-						<a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-					</li>
-					
-					<li>
-						<a href="/preferate"><i class="fa-solid fa-heart"></i></a>
-					</li>
-					
-					<li>
-						<a th:if="${user.nume == 'user'}"href="/signIn"><i class="fa-solid fa-user"></i></a>
-						<a th:if="${user.nume != 'user'}" href="/logOut"><i class="fa-solid fa-sign-out-alt"></i></a>
-					</li>
-					
-				</ul>
-			</nav>
+				<figure>
+					<img src="logo.webp" alt="Logo">
+				</figure>
+				<nav>
+					<ul th:class="navBar">
+						<li>
+							<a th:if="${user.nume=='admin'}" href="/addProduct"><i class="fa-solid fa-star"></i></a>
+						</li>
+						
+						<li>
+							<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+						</li>
+						
+						<li>
+							<a href="/Cos"><i class="fa-solid fa-cart-shopping"></i></a>
+						</li>
+						
+						<li>
+							<a href="/preferate"><i class="fa-solid fa-heart"></i></a>
+						</li>
+						
+						<li>
+							<a th:if="${user.nume == 'user'}"href="/signIn"><i class="fa-solid fa-user"></i></a>
+							<a th:if="${user.nume != 'user'}" href="/logOut"><i class="fa-solid fa-sign-out-alt"></i></a>
+						</li>
+						
+					</ul>
+				</nav>
 		</header>
 		<section>
 		
@@ -64,12 +64,15 @@
 		</section>
 		
 		<section class="products">
-			<div class="product" th:each="produs: ${Produse}">
+		
+			<div class="product-container" th:each="produs: ${Produse}">
+				
 				<a th:href="@{/product/{id}(id=${produs.id})}">
 					<img th:src="@{${produs.img}}" alt="an image of the product" width="100px">
 				</a>
+				
 				<div class="product-text">
-					<h2 th:text="${produs.nume}"></h2>
+					<h3 th:text="${produs.nume}"></h3>
 					<p th:text="${produs.desc}"></p>
 				</div>
 				

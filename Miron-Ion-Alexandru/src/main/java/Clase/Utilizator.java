@@ -26,7 +26,11 @@ public class Utilizator {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "preferate_id", referencedColumnName = "id")
     private Preferate pref = new Preferate();
-//	private Cos cos = new Cos();
+	
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "cos_id", referencedColumnName = "id")
+	private Cos cos = new Cos();
+
 //	private istComenzi istCom = new istComenzi();
 	
 	public Utilizator() {
@@ -111,13 +115,13 @@ public class Utilizator {
 
 	
 
-//	public Cos getCos() {
-//		return cos;
-//	}
+	public Cos getCos() {
+		return cos;
+	}
 
-//	public void setCos(Cos cos) {
-//		this.cos = cos;
-//	}
+	public void setCos(Cos cos) {
+		this.cos = cos;
+	}
 
 	
 

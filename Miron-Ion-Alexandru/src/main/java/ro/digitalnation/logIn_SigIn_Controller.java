@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import Clase.Cos;
 import Clase.Logica;
 import Clase.Preferate;
 import Clase.Utilizator;
@@ -61,9 +62,14 @@ public class logIn_SigIn_Controller {
 	
 	@PostMapping("/signIn")
 	public String signIn(@ModelAttribute Utilizator utilizator, Model model) {
+		
 		Preferate preferate = new Preferate();
 		preferate.setUtilizator(utilizator);
 		utilizator.setPref(preferate);
+		
+		Cos cos = new Cos();
+		cos.setUtilizator(utilizator);
+		utilizator.setCos(cos);
 		
 		if(utilizatorService.verificareNume(utilizator.getNume())!=null&&utilizator.getNume().equals("admin")) {
 			model.addAttribute("invalidUsername", true);

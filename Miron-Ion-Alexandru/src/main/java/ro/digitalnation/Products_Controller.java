@@ -61,6 +61,7 @@ public class Products_Controller {
 	    System.out.println(isPreferred);
 	    model.addAttribute("produs", product);
 	    model.addAttribute("isPreferred", isPreferred);
+	    model.addAttribute("quantity", currentUser.getCos().getCos().get(product));
 	    return "productPage";
 	}
 	

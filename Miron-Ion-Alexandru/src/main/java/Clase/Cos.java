@@ -1,10 +1,64 @@
-/*package Clase;
+package Clase;
 
 import java.util.HashMap;
+import java.util.Map;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapKeyJoinColumn;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Cos {
 
-	private HashMap<Produs, Integer> cos = new HashMap<>();
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+			
+	@OneToOne
+	@JoinColumn(name = "utilizator_id", referencedColumnName="utilizator_id")
+	private Utilizator utilizator;
+	
+	@ElementCollection
+    @CollectionTable(name = "cos_produse", joinColumns = @JoinColumn(name = "cos_id"))
+    @MapKeyJoinColumn(name = "produs_id")
+    @Column(name = "quantity")
+	private Map<Produs, Integer> cos = new HashMap<>();
+	
+	
+
+	
+	public Map<Produs, Integer> getCos() {
+		return cos;
+	}
+
+	public void setCos(HashMap<Produs, Integer> cos) {
+		this.cos = cos;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Utilizator getUtilizator() {
+		return utilizator;
+	}
+
+	public void setUtilizator(Utilizator utilizator) {
+		this.utilizator = utilizator;
+	}
+	
 	
 	public void addCos(Produs p) {
 		if(cos.isEmpty())
@@ -20,7 +74,7 @@ public class Cos {
 			cos.put(p, 1);
 	}
 	
-	public void ArataCos() {
+	/*public void ArataCos() {
 		if(cos.isEmpty()) {
 			System.out.println("Nu ai nimic in cos");
 		}else {
@@ -30,7 +84,7 @@ public class Cos {
 			}
 		}
 			
-	}
+	}*/
 	
 	public void stergereCos(Produs p) {
 		if(cos.containsKey(p)) {
@@ -40,15 +94,4 @@ public class Cos {
 				cos.remove(p);
 		}
     }
-
-	
-	public HashMap<Produs, Integer> getCos() {
-		return cos;
-	}
-
-	public void setCos(HashMap<Produs, Integer> cos) {
-		this.cos = cos;
-	}
-
-	
-}*/
+}

@@ -19,7 +19,9 @@ header{
 	top: 0px;
 	left: 0px;
 	z-index: 100;
+	background:LightPink;
 }
+
 
 figure img{
 	width:100px;
@@ -29,7 +31,7 @@ nav .navBar{
 	display: flex;
 	justify-content: center;
 	padding:25px;
-	font-size:20px
+	font-size:20px;
 }
 
 nav .navBar li{
@@ -46,11 +48,24 @@ table{
 }
 
 .products{
-	text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-    background-size: cover;
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows:200px;
+    grid-gap:2rem;
+    padding:2rem;
+    justify-content:center;
+}
+
+.product-container{
+	width:200px;
+	height:200px;
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-evenly;
+	align-items:center;
+	text-align:center;
+	background:antiquewhite;
+	border-radius:10px;
 }
 
 

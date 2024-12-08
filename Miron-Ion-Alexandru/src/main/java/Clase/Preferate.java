@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -56,39 +55,4 @@ public class Preferate {
 	public void setProduse(Set<Produs> pref) {
 		this.produse = pref;
 	}
-
-
-	
-	
-	
-	
-	
-	
-	/*public void Prefer(Produs p) {
-		pref.add(p);
-	}
-	
-	public void getPreferate() {
-		if(pref.isEmpty()){
-			System.out.println("Nu ai nimic la preferate");
-		}else {
-			System.out.println("Preferatele tale: ");
-			for(Produs p : pref)
-				System.out.println(p.getNume());
-		}
-	}
-	
-	public void stergerePref(Produs p) {
-		boolean q = false;
-		try {
-			if(pref.contains(p)) {
-				pref.remove(p);
-				q=true;
-			}
-			if(q==false)
-				System.out.println("Acest produs nu este la favorizate");
-		}catch(IndexOutOfBoundsException e) {
-			System.out.println("Nu ati pus nimic in preferate");
-		}
-	}*/
 }
