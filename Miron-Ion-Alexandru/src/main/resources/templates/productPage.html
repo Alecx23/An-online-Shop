@@ -36,11 +36,15 @@
         </form>
         </div>
         
-        <div>
+        <div th:if="${produs.stoc>0 && produs.stoc>quantity}">
         	<form th:action="@{/addCos}" method="post">
         		<input type="hidden" th:value="${produs.id}" name="productId" />
         		<button type="submit">Add to Cart</button>
         	</form>
+        </div>
+        
+        <div th:unless="${produs.stoc>0}">
+        	<p> Acest produs nu mai este in stoc</p>
         </div>
         
         <div th:if="${quantity>0}">

@@ -1,5 +1,4 @@
-package ro.digitalnation;
-
+package Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,7 @@ public class Store_Controller {
 	public String home(Model model) {
 		if(q==false) {
 			productServices.addProduct(new Produs("Ciocolata",15,16,"/ciocolata.avif"));
-			productServices.addProduct(new Produs("Ciocolata Neagra",15,10,"/Ciocolata-neagra.jpg"));
+			productServices.addProduct(new Produs("Ciocolata Neagra",15,3,"/Ciocolata-neagra.jpg"));
 			q=true;
 		}
 		model.addAttribute("Produse", productServices.getAllProducts());

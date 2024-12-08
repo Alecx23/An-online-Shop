@@ -21,6 +21,7 @@
 						</div>
 					</a>
 				</div>
+				
 				<div class="remove-button">
 					<form th:action="@{/removeCos}" method="post">
 						<input type="hidden" th:value="${produs.key.id}" name="productId"/>
@@ -29,8 +30,8 @@
 				</div>
 			</div>
 			<div class="buy-button">
-				<form>
-					<input type="hidden"/>
+				<form th:action="@{/Comanda}" method="post">
+					<input type="hidden" th:value="${CosId}" name="CosId"/>
 					<button type="submit">Buy</button>
 				</form>
 			</div>

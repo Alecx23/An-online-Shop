@@ -1,7 +1,4 @@
-package ro.digitalnation;
-
-
-
+package Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import Clase.Cos;
 import Clase.Logica;
@@ -70,6 +68,7 @@ public class logIn_SigIn_Controller {
 		Cos cos = new Cos();
 		cos.setUtilizator(utilizator);
 		utilizator.setCos(cos);
+		
 		
 		if(utilizatorService.verificareNume(utilizator.getNume())!=null&&utilizator.getNume().equals("admin")) {
 			model.addAttribute("invalidUsername", true);

@@ -3,7 +3,6 @@ package Clase;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -73,18 +72,6 @@ public class Cos {
 		else 
 			cos.put(p, 1);
 	}
-	
-	/*public void ArataCos() {
-		if(cos.isEmpty()) {
-			System.out.println("Nu ai nimic in cos");
-		}else {
-			System.out.println("Cosul tau: ");
-			for(Produs p : cos.keySet()) {
-				System.out.println(p.getNume()+" x " + cos.get(p) + " = "+ (p.getPret()*cos.get(p)));
-			}
-		}
-			
-	}*/
 	
 	public void stergereCos(Produs p) {
 		if(cos.containsKey(p)) {

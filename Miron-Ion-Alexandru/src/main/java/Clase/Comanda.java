@@ -1,46 +1,64 @@
-/*package Clase;
+package Clase;
 
 import java.util.HashMap;
-import java.util.Random;
+import java.util.Map;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapKeyJoinColumn;
+
+
+@Entity
 public class Comanda {
 
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@ManyToOne
+    @JoinColumn(name = "utilizator_id")
+    private Utilizator utilizator;
+	
+	@ElementCollection
+    @CollectionTable(name = "comanda_produse", joinColumns = @JoinColumn(name = "comanda_id"))
+    @MapKeyJoinColumn(name = "produs_id")
+    @Column(name = "quantity")
+	private Map<Produs, Integer> comanda = new HashMap<>();
+	
+	
 	private Integer pretT;
-	private HashMap<Produs, Integer> comanda = new HashMap<>();
+	private String adress;
+	private String numarDeTf;
 	
-	public void comand(Utilizator e) {
-		 if(e.getCos().getCos().isEmpty()) {
-			 System.out.println("Nu ai niciun produs in cos");
-		 }
-		 else {
-			 comanda=e.getCos().getCos();
-			 id = new Random().nextInt(1000);
-			 for(Produs p : comanda.keySet()) {
-				 pretT = p.getPret()*comanda.get(p);
-			 }
-			 e.getCos().getCos().clear();
-		 }
-	}
-	
-	public String arataComanda() {
-		if(comanda.isEmpty())
-			return null;
-		else {
-			String n = null;
-			for(Produs p : comanda.keySet()) {
-				n=n.concat(p.getNume()+" X "+p.getPret()+"\n");
-			}
-			return n;
-		}
+	public Comanda() {
 		
 	}
+	
+	
+	public Comanda(String adress, String numar) {
+		super();
+		this.adress = adress;
+		this.numarDeTf = numar;
+	}
 
-	public Integer getId() {
+	public void calculeazaPretT() {
+		for(Produs e:comanda.keySet()) {
+			pretT=pretT+e.getPret()*comanda.get(e);
+		}
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -52,13 +70,37 @@ public class Comanda {
 		this.pretT = pretT;
 	}
 
-	public HashMap<Produs, Integer> getComanda() {
+	public Map<Produs, Integer> getComanda() {
 		return comanda;
 	}
 
-	public void setComanda(HashMap<Produs, Integer> comanda) {
+	public void setComanda(Map<Produs, Integer> comanda) {
 		this.comanda = comanda;
+	}
+
+	public Utilizator getUtilizator() {
+		return utilizator;
+	}
+
+	public void setUtilizator(Utilizator utilizator) {
+		this.utilizator = utilizator;
+	}
+
+	public String getAddress() {
+		return adress;
+	}
+
+	public void setAddress(String address) {
+		this.adress = address;
+	}
+
+	public String getNumarDeTf() {
+		return numarDeTf;
+	}
+
+	public void setNumarDeTf(String numarDeTf) {
+		this.numarDeTf = numarDeTf;
 	}
 	
 	
-}*/
+}

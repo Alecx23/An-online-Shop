@@ -1,5 +1,8 @@
 package Clase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,21 +10,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Utilizator {
 	
+	private String nume;
+	private String nrTel;
+	private String address;
+	private String parola;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="utilizator_id")
 	private Long id;
-	
-	private String nume;
-	private Integer nrTel;
-	private String email;
-	private Integer varsta;
-	private String parola;
 	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "preferate_id", referencedColumnName = "id")
@@ -31,7 +34,10 @@ public class Utilizator {
 	@JoinColumn(name = "cos_id", referencedColumnName = "id")
 	private Cos cos = new Cos();
 
-//	private istComenzi istCom = new istComenzi();
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "utilizator")
+    private List<Comanda> comenzi = new ArrayList<>();
+	
+	
 	
 	public Utilizator() {
 		
@@ -52,41 +58,12 @@ public class Utilizator {
 		this.nume = nume;
 	}
 	
-	
-
-	public Integer getNrTel() {
+	public String getNrTel() {
 		return nrTel;
 	}
-	
 
-	public void setNrTel(Integer nrTel) {
+	public void setNrTel(String nrTel) {
 		this.nrTel = nrTel;
-	}
-	
-
-	public String getEmail() {
-		return email;
-	}
-	
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-
-	public Integer getVarsta() {
-		return varsta;
-	}
-	
-
-	public void setVarsta(Integer varsta) {
-		this.varsta = varsta;
-	}
-
-	@Override
-	public String toString() {
-		return "Utilizator [nume=" + nume + ", nrTel=" + nrTel + ", email=" + email
-				+ ", varsta=" + varsta + ", parola="+parola+ "]";
 	}
 
 	public String getParola() {
@@ -113,8 +90,6 @@ public class Utilizator {
 		this.pref = pref;
 	}
 
-	
-
 	public Cos getCos() {
 		return cos;
 	}
@@ -123,15 +98,24 @@ public class Utilizator {
 		this.cos = cos;
 	}
 
+	public List<Comanda> getComenzi() {
+		return comenzi;
+	}
+
+	public void setComenzi(List<Comanda> comenzi) {
+		this.comenzi = comenzi;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	
-
-//	public istComenzi getIstCom() {
-//		return istCom;
-//	}
-
-//	public void setIstCom(istComenzi istCom) {
-//		this.istCom = istCom;
-//	}
 	
 	
 }

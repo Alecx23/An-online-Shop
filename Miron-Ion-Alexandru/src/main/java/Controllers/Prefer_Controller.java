@@ -1,4 +1,4 @@
-package ro.digitalnation;
+package Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,11 +42,6 @@ public class Prefer_Controller {
     	
     	
     	Preferate userFavorite = currentUser.getPref();
-    	
-    	/*if(userFavorite.getProduse().isEmpty()) {
-    		userFavorite.getProduse().add(product);
-    		preferateServices.addPreferate(userFavorite);
-    	}*/
     	
     	if(!userFavorite.getProduse().contains(product)) {
     		userFavorite.getProduse().add(product);

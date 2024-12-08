@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Comanda details</title>
+	</head>
+	
+	<body>
+		<h1>Add New Product</h1>
+	    <form th:action="@{/buyComanda}" th:object="${form}" method="post">
+	        <label for="address">Adresa:</label>
+	        <input type="text" id="adress" th:field="*{address}" required /><br>
+	
+	        <label for="numar">Numar de Telefon:</label>
+	        <input type="text" id="nrDeTf" th:field="*{phoneNumber}" required /><br>
+	
+	        <button type="submit">Submit</button>
+	    </form>
+	</body>
+</html>

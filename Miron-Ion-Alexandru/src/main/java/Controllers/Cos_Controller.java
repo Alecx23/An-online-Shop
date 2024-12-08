@@ -1,4 +1,4 @@
-package ro.digitalnation;
+package Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,6 +58,7 @@ public class Cos_Controller {
 	public String Cos(Model model) {
 		Utilizator currentUser = userServices.getUtilizatorRepository().findById(logIn_SigIn_Controller.account.getId()).orElse(null);
 		Cos userCos = currentUser.getCos();
+		model.addAttribute("CosId", userCos.getId());
 		model.addAttribute("ProduseCos",userCos.getCos());
 		return "cosPage";
 	}
