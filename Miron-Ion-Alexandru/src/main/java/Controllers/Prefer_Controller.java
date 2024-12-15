@@ -26,6 +26,7 @@ public class Prefer_Controller {
     @Autowired
     private UtilizatorService userServices;
     
+    //it puts the product in the user favorite list, if they don't have it already
     @PostMapping("/preferate/add")
     public String addToPreferate(@RequestParam Long productId) {
     	Produs product = productServices.getProductRepository().findById(productId).orElse(null);
@@ -51,6 +52,7 @@ public class Prefer_Controller {
     	return "redirect:/product/" +productId.toString();
     }
     
+    // it removes the product from the user favorite list
     @PostMapping("/preferate/remove")
     public String removeToPreferate(@RequestParam Long productId) {
     	Produs product = productServices.getProductRepository().findById(productId).orElse(null);
@@ -76,6 +78,7 @@ public class Prefer_Controller {
     	return "redirect:/product/" +productId.toString();
     }
     
+    //it gets all the user favorite and shows it
     @GetMapping("/preferate")
     public String preferate(Model model) {
     	

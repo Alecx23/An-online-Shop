@@ -26,6 +26,7 @@ public class Cos_Controller {
 	@Autowired
 	private CosServices cosServices;
 	
+	// adds the product in to the users basket
 	@PostMapping("/addCos")
 	public String addToCos(@RequestParam Long productId) {
 		Produs product = productServices.getProductRepository().findById(productId).orElse(null);
@@ -40,6 +41,7 @@ public class Cos_Controller {
 		return "redirect:/product/" +productId.toString();
 	}
 	
+	//removes the product from the user basket
 	@PostMapping("/removeCos")
 	public String removeToCos(@RequestParam Long productId) {
 		Produs product = productServices.getProductRepository().findById(productId).orElse(null);
@@ -54,6 +56,7 @@ public class Cos_Controller {
 		return "redirect:/Cos";
 	}
 	
+	//shows all the products from the user basket
 	@GetMapping("/Cos")
 	public String Cos(Model model) {
 		Utilizator currentUser = userServices.getUtilizatorRepository().findById(logIn_SigIn_Controller.account.getId()).orElse(null);

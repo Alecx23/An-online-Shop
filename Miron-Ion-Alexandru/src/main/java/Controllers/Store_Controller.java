@@ -22,7 +22,7 @@ public class Store_Controller {
 	@Autowired
 	UtilizatorService utilizatorService;
 	
-	//HomePage :0
+	//HomePage of the site:0
 	@GetMapping("/")
 	public String home(Model model) {
 		if(q==false) {

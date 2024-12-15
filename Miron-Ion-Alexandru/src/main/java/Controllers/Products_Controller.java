@@ -33,6 +33,7 @@ public class Products_Controller {
 	private static final String UPLOAD_DIRECTORY = System.getProperty("user.dir")+File.separator + "src" + File.separator
 			+"main" +File.separator+"resources"+File.separator+"static"+File.separator+"uploads";
 	
+	//the product page
 	@GetMapping("/product/{id}")
 	public String productDetails(@PathVariable Long id, Model model) {
 		
@@ -57,6 +58,7 @@ public class Products_Controller {
 	    }
 	    
 	    //System.out.println(isPreferred);
+	    
 	    model.addAttribute("produs", product);
 	    model.addAttribute("isPreferred", isPreferred);
 	    model.addAttribute("quantity", currentUser.getCos().getCos().get(product));
@@ -64,12 +66,14 @@ public class Products_Controller {
 	    return "productPage";
 	}
 	
+	// the form as to add a new product
 	@GetMapping("/addProduct")
 	public String displayAddProductForm(Model model) {
 		model.addAttribute("produs", new Produs());
 		return "addProduct";
 	}
 	
+	// to add the product from the form into the database
 	@PostMapping("/addProduct")
 	public String addProduct(@ModelAttribute Produs produs, @RequestParam("image") MultipartFile file, Model model)
 	throws IOException{

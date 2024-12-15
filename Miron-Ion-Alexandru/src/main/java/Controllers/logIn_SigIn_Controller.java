@@ -22,12 +22,14 @@ public class logIn_SigIn_Controller {
 	@Autowired
 	UtilizatorService utilizatorService;
 	
+	// the log in form
 	@GetMapping("/login")
 	public String LogInForm(Model model) {
 		model.addAttribute("utilizator", new Utilizator("",""));
 		return "Login_Page";
 	}
 	
+	// the verification of the form
 	@PostMapping("/login")
 	public String login(@ModelAttribute Utilizator utilizator, Model model) {
 		String username = utilizator.getNume();
@@ -45,12 +47,14 @@ public class logIn_SigIn_Controller {
 			
 	}
 	
+	// the sign in form
 	@GetMapping("/signIn")
 	public String signInForm(Model model) {
 		model.addAttribute("utilizator", new Utilizator("",""));
 		return "signIn";
 	}
 	
+	// verification of the sign in form
 	@PostMapping("/signIn")
 	public String signIn(@ModelAttribute Utilizator utilizator, Model model) {
 		
@@ -62,7 +66,7 @@ public class logIn_SigIn_Controller {
 		//cos.setUtilizator(utilizator);
 		//utilizator.setCos(cos);
 		
-		
+		//it checks if the user has put a strong password and if the username is original
 		if(utilizatorService.verificareNume(utilizator.getNume())!=null&&utilizator.getNume().equals("admin")) {
 			model.addAttribute("invalidUsername", true);
 			return "signIn";
@@ -78,6 +82,7 @@ public class logIn_SigIn_Controller {
 		return "redirect:login";
 	}
 	
+	//if the user wants to log out of their account
 	@GetMapping("/logOut")
 	public String logOut() {
 		account.setParola("user");

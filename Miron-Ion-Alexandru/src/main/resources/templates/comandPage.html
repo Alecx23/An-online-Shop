@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+	
 	<head>
 		<meta charset ="utf-8">
 		<title>Comanda</title>
@@ -7,11 +8,15 @@
 	</head>
 	
 	<body>
+		
 		<section class="Comanda">
+			
 			<div class="product-container" th:each="produs: ${Comanda}">
 				
 				<div class="product-card">
+					
 					<a th:href="@{/product/{id}(id=${produs.key.id})}">
+						
 						<img th:src="@{${produs.key.img}}" width=100px alt="an image of the product" class="product-img">
 						
 						<div class="product-text">
@@ -22,7 +27,9 @@
 							<p th:text="${produs.key.pret}"/>
 						</div>
 					</a>
+					
 				</div>
+				
 			</div>
 			
 			<div class="PretTotal">
@@ -36,6 +43,7 @@
 					<button type="submit">Modify order</button>
 				</form>
 			</div>
+			
 			<div class="buy-button">
 				<form th:action="@{/buyComanda}" method="get">
 					<input type="hidden">
@@ -45,4 +53,5 @@
 			
 		</section>
 	</body>
+	
 </html>

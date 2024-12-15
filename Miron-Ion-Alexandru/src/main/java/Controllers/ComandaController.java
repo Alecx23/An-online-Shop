@@ -38,6 +38,8 @@ public class ComandaController {
 	@Autowired
 	private CosServices cosServices;
 	
+	//it gets all the items from the user baskets and calculates the total price 
+	//then it asks the user if they want to buy the products or modify the order
 	@Transactional
 	@PostMapping("/Comanda")
 	public String addComanda(@RequestParam Long CosId, Model model) {
@@ -55,12 +57,15 @@ public class ComandaController {
 		return "comandPage";
 	}
 	
+	//it shows a form to the user that they have to complete with their address and their phone number
 	@GetMapping("/buyComanda")
 	public String displayComandaForm(Model model) {
 		model.addAttribute("form", new Form());
 		return "comandaForm";
 	}
 	
+	//it gets the data from the form and it puts it creates the order for the user
+	//then it puts the order in the users list of orders
 	@PostMapping("/buyComanda")
 	public String buyComanda(@ModelAttribute Form form) {
 		
