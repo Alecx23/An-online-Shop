@@ -7,9 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Preferate {
@@ -19,11 +17,11 @@ public class Preferate {
 	private Long Id;
 	
 	
-	@OneToOne
-	@JoinColumn(name = "utilizator_id", referencedColumnName = "utilizator_id")
-	private Utilizator utilizator;
+	//@OneToOne
+	//@JoinColumn(name = "utilizator_id", referencedColumnName = "utilizator_id")
+	//private Utilizator utilizator;
 	
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Produs> produse = new HashSet<>();
 	
 	public Long getId() {
@@ -36,14 +34,14 @@ public class Preferate {
 	}
 
 
-	public Utilizator getUtilizator() {
+	/*public Utilizator getUtilizator() {
 		return utilizator;
 	}
 
 
 	public void setUtilizator(Utilizator utilizator) {
 		this.utilizator = utilizator;
-	}
+	}*/
 
 
 	public Set<Produs> getProduse() {

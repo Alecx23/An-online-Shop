@@ -62,7 +62,7 @@ public class ComandaController {
 	}
 	
 	@PostMapping("/buyComanda")
-	public String buyComanda(@ModelAttribute Form form, Model model) {
+	public String buyComanda(@ModelAttribute Form form) {
 		
 		Utilizator currentUser = userServices.getUtilizatorRepository().findById(logIn_SigIn_Controller.account.getId()).orElse(null);
 		Cos userCos = cosServices.getCosRepository().findById(currentUser.getCos().getId()).orElse(null);

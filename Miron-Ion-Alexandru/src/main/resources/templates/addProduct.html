@@ -3,7 +3,9 @@
 <head>
     <title>Add Product</title>
 </head>
+
 <body>
+	<a href="/" class="btn btn-primary">Back to Home</a>
     <h1>Add New Product</h1>
     <form th:action="@{/addProduct}" th:object="${produs}" method="post" enctype="multipart/form-data">
         <label for="nume">Name:</label>

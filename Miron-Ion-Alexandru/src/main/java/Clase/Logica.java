@@ -4,6 +4,8 @@ public class Logica {
 
 public static boolean verifyPass(String pass) {
 		
+		
+	
 		int q=0;
 		if(pass.length()>=8) {
 			for(int i=0;i<pass.length()&&q==0;i++) 

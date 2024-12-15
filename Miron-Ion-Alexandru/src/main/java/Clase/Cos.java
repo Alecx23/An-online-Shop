@@ -12,7 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyJoinColumn;
-import jakarta.persistence.OneToOne;
+//import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cos {
@@ -21,9 +21,9 @@ public class Cos {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 			
-	@OneToOne
-	@JoinColumn(name = "utilizator_id", referencedColumnName="utilizator_id")
-	private Utilizator utilizator;
+	//@OneToOne
+	//@JoinColumn(name = "utilizator_id", referencedColumnName="utilizator_id")
+	//private Utilizator utilizator;
 	
 	@ElementCollection
     @CollectionTable(name = "cos_produse", joinColumns = @JoinColumn(name = "cos_id"))
@@ -50,13 +50,13 @@ public class Cos {
 		this.id = id;
 	}
 
-	public Utilizator getUtilizator() {
+	/*public Utilizator getUtilizator() {
 		return utilizator;
 	}
 
 	public void setUtilizator(Utilizator utilizator) {
 		this.utilizator = utilizator;
-	}
+	}*/
 	
 	
 	public void addCos(Produs p) {

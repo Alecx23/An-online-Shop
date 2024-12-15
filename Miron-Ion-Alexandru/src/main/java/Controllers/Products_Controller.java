@@ -35,30 +35,32 @@ public class Products_Controller {
 	
 	@GetMapping("/product/{id}")
 	public String productDetails(@PathVariable Long id, Model model) {
+		
 		if(id==null) {
 			System.out.println("id-ul este null");
 			return "redirect:/";
 		}
+		
 		Produs product = productServices.getProductRepository().findById(id).orElse(null);
-		System.out.println(product.toString());
-		
-		System.out.println(logIn_SigIn_Controller.account.toString());
-		System.out.println(logIn_SigIn_Controller.account.getPref());
-		
 		Utilizator currentUser = utilizatorService.getUtilizatorRepository()
 	            .findById(logIn_SigIn_Controller.account.getId())
 	            .orElse(null);
 		
-		System.out.println(currentUser);
+		/*System.out.println(product.toString());
+		  System.out.println(logIn_SigIn_Controller.account.toString());
+		  System.out.println(logIn_SigIn_Controller.account.getPref());
+		  System.out.println(currentUser);*/
 		
 		boolean isPreferred = false;
 	    if (currentUser != null) {
 	        isPreferred = currentUser.getPref().getProduse().contains(product);
 	    }
-	    System.out.println(isPreferred);
+	    
+	    //System.out.println(isPreferred);
 	    model.addAttribute("produs", product);
 	    model.addAttribute("isPreferred", isPreferred);
 	    model.addAttribute("quantity", currentUser.getCos().getCos().get(product));
+	    
 	    return "productPage";
 	}
 	
@@ -67,7 +69,6 @@ public class Products_Controller {
 		model.addAttribute("produs", new Produs());
 		return "addProduct";
 	}
-	
 	
 	@PostMapping("/addProduct")
 	public String addProduct(@ModelAttribute Produs produs, @RequestParam("image") MultipartFile file, Model model)

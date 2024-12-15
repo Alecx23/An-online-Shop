@@ -57,7 +57,7 @@ public class Prefer_Controller {
     	if(product==null) {
     		return "redirect:/";
     	}
-    	System.out.println(product.toString());
+    	//System.out.println(product.toString());
     	Utilizator currentUser = userServices.getUtilizatorRepository().findById(logIn_SigIn_Controller.account.getId()).orElse(null);
     	
     	if(currentUser==null) {
@@ -72,7 +72,7 @@ public class Prefer_Controller {
     		userFavorite.getProduse().remove(product);
     		preferateServices.addPreferate(userFavorite);
     	}
-    	System.out.println(product.getId().toString());
+    	//System.out.println(product.getId().toString());
     	return "redirect:/product/" +productId.toString();
     }
     

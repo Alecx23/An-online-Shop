@@ -4,7 +4,13 @@ public class Form {
 
 	private String address;
 	private String phoneNumber;
+	private String parola;
 	
+	
+	public Form(String parola) {
+		this.parola = parola;
+	}
+
 	public Form() {
 		
 	}
@@ -30,6 +36,15 @@ public class Form {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public String getParola() {
+		return parola;
+	}
+
+	public void setParola(String parola) {
+		this.parola = parola;
+	}
+	
 	
 	
 }

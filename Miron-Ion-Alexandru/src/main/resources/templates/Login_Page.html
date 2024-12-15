@@ -7,6 +7,7 @@
 	</head>
 	
 	<body>
+		<a href="/" class="btn btn-primary">Back to Home</a>
 		<h1>Login form:</h1>
 		
 		<form th:action="@{/login}" th:object="${utilizator}" method="post">
@@ -20,6 +21,7 @@
 			<br/>
 			<input type="submit" value="Log in"/>
 		</form>
+		<a href="/signIn" class="btn btn-primary">Sign in here</a>
 	</body>
 	
 </html>

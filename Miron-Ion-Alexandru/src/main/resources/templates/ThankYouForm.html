@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Comanda details</title>
+	</head>
+	
+	<body>
+		<h1>Ce cauti aici?</h1>
+		<p th:if="${gresit}" style="color:red;" >Gresit!</p>
+		<form th:action="@{/Why_u_here}" th:object="${form}" method="post">
+			<label for="parola">Introdu parola?</label>
+			<input type="text" th:field="*{parola}" required>
+			<button type="submit">Trimite?</button>
+		</form>
+	</body>
+	
+</html>

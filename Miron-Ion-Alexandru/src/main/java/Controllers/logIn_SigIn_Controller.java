@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
-import Clase.Cos;
 import Clase.Logica;
-import Clase.Preferate;
 import Clase.Utilizator;
 import Services.UtilizatorService;
 
@@ -19,6 +17,7 @@ import Services.UtilizatorService;
 public class logIn_SigIn_Controller {
 	
 	protected static Utilizator account=new Utilizator("user","user");
+	
 	
 	@Autowired
 	UtilizatorService utilizatorService;
@@ -33,12 +32,6 @@ public class logIn_SigIn_Controller {
 	public String login(@ModelAttribute Utilizator utilizator, Model model) {
 		String username = utilizator.getNume();
 		String password = utilizator.getParola();
-		
-		
-		if("admin".equals(username) && "admin".equals(password)) {
-			account = new Utilizator("admin","admin");
-			return "redirect:/";
-		}
 		
 		if(utilizatorService.LogIn(username, password)!=null) {
 				account= new Utilizator(username,password);
@@ -61,13 +54,13 @@ public class logIn_SigIn_Controller {
 	@PostMapping("/signIn")
 	public String signIn(@ModelAttribute Utilizator utilizator, Model model) {
 		
-		Preferate preferate = new Preferate();
-		preferate.setUtilizator(utilizator);
-		utilizator.setPref(preferate);
+		//Preferate preferate = new Preferate();
+		//preferate.setUtilizator(utilizator);
+		//utilizator.setPref(preferate);
 		
-		Cos cos = new Cos();
-		cos.setUtilizator(utilizator);
-		utilizator.setCos(cos);
+		//Cos cos = new Cos();
+		//cos.setUtilizator(utilizator);
+		//utilizator.setCos(cos);
 		
 		
 		if(utilizatorService.verificareNume(utilizator.getNume())!=null&&utilizator.getNume().equals("admin")) {
@@ -81,7 +74,16 @@ public class logIn_SigIn_Controller {
 		}
 		
 		utilizatorService.addUtilizator(utilizator);
-		System.out.println(utilizator);
+		//System.out.println(utilizator);
 		return "redirect:login";
 	}
+	
+	@GetMapping("/logOut")
+	public String logOut() {
+		account.setParola("user");
+		account.setNume("user");
+		account.setId(utilizatorService.getUtilizatorRepository().findByNume("user").getId());
+		return "redirect:/";
+	}
+	
 }
